@@ -45,13 +45,11 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v2
-        with:
-          path: service-1
       - 
         name: Build and push Docker images
         uses: docker/build-push-action@v3.1.1
         with:
-          context: "{{defaultContext}}:${{ matrix.image }}"
+          context: ${{ matrix.image }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
