@@ -21,6 +21,14 @@ jobs:
   docker-build-and-push:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./service-1/Dockerfile
+            image: service-1
+          - dockerfile: ./service-2/Dockerfile
+            image: service-2
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,11 +42,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - 
+        name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ${{ matrix.image }}
+      - 
         name: Build and push Docker images
         uses: docker/build-push-action@v3.1.1
         with:
+          file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}:latest
   
   helm-build: 
     needs: [docker-build-and-push]
