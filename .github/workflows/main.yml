@@ -32,9 +32,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - 
-        name: Checkout
-        uses: actions/checkout@v2
       -
         name: Set up Docker Buildx
         id: buildx
@@ -45,6 +42,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: service-1
       - 
         name: Build and push Docker images
         uses: docker/build-push-action@v3.1.1
