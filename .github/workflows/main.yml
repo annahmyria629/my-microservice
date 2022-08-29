@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v3.1.1
         with:
           context: "{{defaultContext}}:${{ matrix.image }}"
-          file: "{{defaultContext}}:${{ matrix.image }}/Dockerfile"
+          file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
   
