@@ -45,7 +45,7 @@ jobs:
         name: Build and push Docker images
         uses: docker/build-push-action@v3.1.1
         with:
-          context: .
+          context: "{{defaultContext}}:${{ matrix.image }}"
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
