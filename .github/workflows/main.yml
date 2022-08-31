@@ -4,9 +4,9 @@ name: CI/CD
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,9 +32,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - 
-        name: Checkout
-        uses: actions/checkout@v2
       -
         name: Set up Docker Buildx
         id: buildx
@@ -46,10 +43,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - 
+        name: Checkout
+        uses: actions/checkout@v2
+      - 
         name: Build and push Docker images
         uses: docker/build-push-action@v3.1.1
         with:
-          context: "{{defaultContext}}:${{ matrix.image }}"
+          context: ${{ matrix.image }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image }}:latest
