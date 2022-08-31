@@ -59,10 +59,15 @@ jobs:
     runs-on: ubuntu-latest  
     steps: 
       - 
+        name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.8.1
+      - 
         name: Build Umbrella chart
-        run: |
-          helm dependency build ./helm/umbrella-chart
-  
+        uses: helm/chart-releaser-action@v1.4.0
+        with:
+          charts_dir: /helm/umbrella-chart  
   deploy-on-eks:
     needs: [helm-build]
     runs-on: ubuntu-latest
