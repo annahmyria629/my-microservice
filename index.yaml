@@ -3,6 +3,20 @@ entries:
   umbrella-chart:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-09-01T19:37:41.715592871Z"
+    dependencies:
+    - name: service-1
+      repository: file://../service-1
+      version: 0.1.1
+    description: My umbrella chart
+    digest: 1bc909a8a85a1a622185145f36cfa6fd15d6b58d9d65e5b85caf98d3047f2ada
+    name: umbrella-chart
+    type: application
+    urls:
+    - https://github.com/annahmyria629/my-microservice/releases/download/umbrella-chart-1.0.6/umbrella-chart-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-09-01T19:02:33.520982015Z"
     dependencies:
     - name: service-1
@@ -29,4 +43,4 @@ entries:
     urls:
     - https://github.com/annahmyria629/my-microservice/releases/download/umbrella-chart-1.0.4/umbrella-chart-1.0.4.tgz
     version: 1.0.4
-generated: "2022-09-01T19:02:33.520999316Z"
+generated: "2022-09-01T19:37:41.715608471Z"
