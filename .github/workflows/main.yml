@@ -62,7 +62,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: 2
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
