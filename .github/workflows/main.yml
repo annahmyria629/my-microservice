@@ -62,8 +62,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 1
-          path: 'helm/umbrella-chart'
+          fetch-depth: 3
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
