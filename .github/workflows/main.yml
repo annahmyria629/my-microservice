@@ -76,7 +76,7 @@ jobs:
         name: Build Umbrella chart
         uses: helm/chart-releaser-action@v1.4.0
         with:
-          charts_dir: helm/umbrella-chart
+          charts_dir: helm
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 #   deploy-on-eks:
