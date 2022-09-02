@@ -3,7 +3,7 @@ import pathlib
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/service2')
 def index():
     return "Web App with Python Flask in servise-2\n"
 
