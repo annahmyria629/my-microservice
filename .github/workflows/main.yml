@@ -79,18 +79,19 @@ jobs:
           charts_dir: helm
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#   deploy-on-eks:
-#     needs: [helm-build]
-#     runs-on: ubuntu-22.04
-#     steps:   
-#       - 
-#         name: Deploy on EKS
-#         uses: peymanmortazavi/eks-helm-deploy@v1
-#         with:   
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS__KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: eu-west-1
-#           cluster-name: ex-ter
-#           namespace: default
-#           name: umbrella-chart
-#           chart-path: helm/umbrella-chart
+  deploy-on-eks:
+    needs: [helm-build]
+    runs-on: ubuntu-22.04
+    steps:   
+      - 
+        name: Deploy on EKS
+        uses: bitovi/github-actions-deploy-eks-helm@v1.1.0
+        with:   
+          aws-access-key-id: ${{ secrets.AWS_ACCESS__KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+          cluster-name: ex-ter
+          namespace: default
+          name: umbrella-chart
+          chart-path: annahmyria629/
+          chart-repository: https://annahmyria629.github.io/my-microservice/
