@@ -3,3 +3,4 @@
 **/venv
 **/newvenv
 **/__pycache__
+helm/ingress.yaml
